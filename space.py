@@ -7,6 +7,15 @@ class SpaceShip(pygame.sprite.Sprite):
         self.image = pygame.image.load(path)
         self.rect = self.image.get_rect(center = (x_pos,y_pos))
 
+    def update(self):
+        self.rect.center = pygame.mouse.get_pos()
+        self.screen_constrain()
+
+    def screen_constrain(self):
+        if self.rect.right >= 1280:
+            self.rect.right = 1280
+        if self.rect.left <= 0:
+            self.rect.left = 0
 
 
 pygame.init() # initiate pygame
@@ -26,5 +35,6 @@ while True: # Game loop
 
     screen.fill((40,30,51))
     spaceship_group.draw(screen)
+    spaceship_group.update()
     pygame.display.update() # Draw frame
     clock.tick(120) # Control the framerate
