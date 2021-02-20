@@ -12,10 +12,10 @@ class SpaceShip(pygame.sprite.Sprite):
         self.screen_constrain()
 
     def screen_constrain(self):
-        if self.rect.right >= 1280:
-            self.rect.right = 1280
-        if self.rect.left <= 0:
-            self.rect.left = 0
+        if self.rect.right >= 1696:
+            self.rect.right = 1696
+        if self.rect.left <= -400:
+            self.rect.left = -400
 
 class Meteor(pygame.sprite.Sprite):
     def __init__(self,path,x_pos,y_pos,x_speed,y_speed):
@@ -36,7 +36,7 @@ pygame.init() # initiate pygame
 screen = pygame.display.set_mode((1280,720)) #Create display surface
 clock = pygame.time.Clock() # Crete clock object
 
-spaceship = SpaceShip('spaceship.png',640,500,10)
+spaceship = SpaceShip('spaceship2.png',640,500,10)
 spaceship_group = pygame.sprite.GroupSingle()
 spaceship_group.add(spaceship)
 
