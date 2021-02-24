@@ -25,6 +25,12 @@ class SpaceShip(pygame.sprite.Sprite):
              screen.blit(self.shield_surface,(10 + index * 40 ,10))
 
 
+    def get_damage(self,damage_amount):
+        self.health -= damage_amount
+
+
+
+
 class Meteor(pygame.sprite.Sprite):
     def __init__(self,path,x_pos,y_pos,x_speed,y_speed):
         super().__init__()
@@ -58,7 +64,7 @@ pygame.init() # initiate pygame
 screen = pygame.display.set_mode((1280,720)) #Create display surface
 clock = pygame.time.Clock() # Crete clock object
 
-spaceship = SpaceShip('spaceship2.png',640,500,10)
+spaceship = SpaceShip('spaceship.png',640,500,10)
 spaceship_group = pygame.sprite.GroupSingle()
 spaceship_group.add(spaceship)
 
@@ -100,6 +106,15 @@ while True: # Game loop
     laser_group.update()
     spaceship_group.update()
     meteor_group.update()
+
+
+    # Collision
+    if pygame.sprite.spritecollide(spaceship_group.sprite,meteor_group,True):
+        spaceship_group.sprite.get_damage(1)
+
+    for laser in laser_group:
+       pygame.sprite.spritecollide(laser,meteor_group,True)
+
 
     pygame.display.update() # Draw frame
     clock.tick(120) # Control the framerate
