@@ -53,7 +53,7 @@ class Laser(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.centery -= self.speed
-        if self.rect.centery <= -100:
+        if self.rect.centery <= 10:
             self.kill()
 
 
@@ -89,7 +89,7 @@ clock = pygame.time.Clock() # Crete clock object
 game_font = pygame.font.Font(None,80)
 #game_font = pygame.font.SysFont(pygame.font.get_default_font(),180)
 
-spaceship = SpaceShip('spaceship.png',640,500,10)
+spaceship = SpaceShip('spaceship2.png',640,500,10)
 spaceship_group = pygame.sprite.GroupSingle()
 spaceship_group.add(spaceship)
 
